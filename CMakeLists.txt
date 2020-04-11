@@ -35,7 +35,7 @@ set(MAGIC ../Magic)
 include(${MAGIC}/Library.cmake)
 add_subdirectory(${MAGIC} Magic.out)
 include_directories(
-	${MAGIC}/include						#Magic
+	${MAGIC}/Include						#Magic
 	${MAGIC}/ThirdParty/Gzip				#Gzip
 	${MAGIC}/ThirdParty/Asio/asio/include	#ASIO
 	${MAGIC}/ThirdParty/RapidJSON/include	#RapidJSON
