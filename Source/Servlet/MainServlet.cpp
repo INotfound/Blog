@@ -4,7 +4,7 @@
  * @Date: 2020-04-06 16:05:48
  * @LastEditTime: 2020-04-08 11:47:34
  */
-#include "MainServlet.h"
+#include "Servlet/MainServlet.h"
 namespace Web{
     MainServlet::MainServlet(const std::string& path)
         :HttpServlet(path){
@@ -18,6 +18,7 @@ namespace Web{
         //     << token    << "|"
         //     << std::to_string(timeMs);
         // return Magic::MD5HexString(sstream.str());
+        return "";
     }
 
     bool MainServlet::handle(const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response){
@@ -48,9 +49,8 @@ namespace Web{
         Magic::Http::SessionMgr::GetInstance()->add(session);
         return Magic::Http::SessionMgr::GetInstance()->get(sid);
     }
-    void handleGet(const Safe<Magic::Http::Session>& session,const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response){
+    void MainServlet::handleGet(const Safe<Magic::Http::Session>& session,const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response){
     }
-    void handlePost(const Safe<Magic::Http::Session>& session,const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response){
-        
+    void MainServlet::handlePost(const Safe<Magic::Http::Session>& session,const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response){
     }
 }

@@ -4,7 +4,7 @@
  * @Date: 2020-04-06 20:12:18
  * @LastEditTime: 2020-04-06 20:15:29
  */
-#include "StaticServlet.h"
+#include "Servlet/StaticServlet.h"
 namespace Web{
     StaticServlet::StaticServlet(const std::string& path)
         :HttpServlet(path){

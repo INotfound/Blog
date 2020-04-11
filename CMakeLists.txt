@@ -26,22 +26,24 @@ elseif(UNIX AND NOT ANDROID)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif()
 
-
 set(SRC
     Build.cpp
 )
 
+####################################
+set(MAGIC ../Magic)
+include(${MAGIC}/Library.cmake)
+add_subdirectory(${MAGIC} Magic.out)
+include_directories(
+	${MAGIC}/include						#Magic
+	${MAGIC}/ThirdParty/Gzip				#Gzip
+	${MAGIC}/ThirdParty/Asio/asio/include	#ASIO
+	${MAGIC}/ThirdParty/RapidJSON/include	#RapidJSON
+)
+####################################
+
 include_directories(Include)
 
-#Magic
-add_subdirectory(../Magic Magic.out)
-include_directories(../Magic/Include)
-#Gzip
-include_directories(../Magic/ThirdParty/Gzip)
-#ASIO
-include_directories(../Magic/ThirdParty/Asio/asio/include)
-#RapidJSON
-include_directories(../Magic/ThirdParty/RapidJSON/include)
 
 add_executable(WebServer ${SRC})
 target_link_libraries(WebServer Magic)

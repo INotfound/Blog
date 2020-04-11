@@ -7,6 +7,6 @@
 #include "Servlet/LoginServlet.h"
 namespace Web{
     LoginServlet::LoginServlet(const std::string& path)
-        :LoginServlet(path){
+        :MainServlet(path){
     }
 }

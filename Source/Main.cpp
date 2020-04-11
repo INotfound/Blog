@@ -8,6 +8,6 @@
 
 int main(){
     Magic::Init("WebServer");
-    
+    getchar();
     return 0;
 }
