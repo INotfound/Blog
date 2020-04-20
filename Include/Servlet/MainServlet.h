@@ -17,9 +17,9 @@ namespace Cookie{
     public:
         MainServlet(const std::string& name);
     protected:
-        std::string getToken(const std::string& token,uint64_t timeMs);
+        std::string checkToken(const std::string& token,uint64_t timeMs);
         bool handle(const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response) override;
-        const Safe<Magic::Http::Session>& checkLogin(const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response);
+        const Safe<Magic::Http::Session>& checkSession(const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response);
         virtual void handleGet(const Safe<Magic::Http::Session>& session,const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response);
         virtual void handlePost(const Safe<Magic::Http::Session>& session,const Safe<Magic::Http::HttpRequest>& request,const Safe<Magic::Http::HttpResponse>& response);
     };
