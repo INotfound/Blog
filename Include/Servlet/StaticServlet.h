@@ -1,13 +1,13 @@
 /*
- * @file: StaticServlet.h
+ * @File: StaticServlet.h
  * @Author: INotFound
  * @Date: 2020-04-06 20:12:42
- * @LastEditTime: 2020-04-06 20:14:51
+ * @LastEditTime: 2020-04-27 14:11:34
  */
 #pragma once
 #include "Magic.h"
 
-namespace Web{
+namespace Blog{
     class StaticServlet :public Magic::Http::HttpServlet{
     public:
         StaticServlet(const std::string& path);

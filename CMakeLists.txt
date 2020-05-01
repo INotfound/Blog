@@ -27,6 +27,13 @@ elseif(UNIX AND NOT ANDROID)
 endif()
 
 set(SRC
+	Source/Main.cpp
+	Source/Servlet/MainServlet.cpp
+	Source/Servlet/LoginServlet.cpp
+	Source/Servlet/StaticServlet.cpp
+)
+
+set(SRCS
     Build.cpp
 )
 
@@ -43,7 +50,6 @@ include_directories(
 ########################################################################################
 
 include_directories(Include)
-
 
 add_executable(WebServer ${SRC})
 target_link_libraries(WebServer Magic)

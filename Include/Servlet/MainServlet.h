@@ -1,18 +1,14 @@
 /*
- * @file: MainServlet.h
+ * @File: MainServlet.h
  * @Author: INotFound
  * @Date: 2020-04-06 16:06:37
- * @LastEditTime: 2020-04-08 11:27:26
+ * @LastEditTime: 2020-04-27 14:38:54
  */
 #pragma once
 #include "Magic.h"
 
-namespace Web{
-namespace Cookie{
-    const char* TOKEN = "MTOKEN";
-    const char* SESSEION ="MSEEION";
-    const char* TOKENTIME = "MTOKENTIME";
-}
+namespace Blog{
+
     class MainServlet :public Magic::Http::HttpServlet{
     public:
         MainServlet(const std::string& name);

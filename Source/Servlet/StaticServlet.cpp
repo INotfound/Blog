@@ -1,11 +1,11 @@
 /*
- * @file: StaticServlet.cpp
+ * @File: StaticServlet.cpp
  * @Author: INotFound
  * @Date: 2020-04-06 20:12:18
- * @LastEditTime: 2020-04-06 20:15:29
+ * @LastEditTime: 2020-04-27 14:11:49
  */
 #include "Servlet/StaticServlet.h"
-namespace Web{
+namespace Blog{
     StaticServlet::StaticServlet(const std::string& path)
         :HttpServlet(path){
     }
