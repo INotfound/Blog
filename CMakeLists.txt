@@ -1,55 +1,41 @@
 cmake_minimum_required(VERSION 3.0)
-project(Web)
 
+project(Blog)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(WIN32 AND NOT MINGW)
-    message("~~~~~~~~~WIN32 Configuration~~~~~~~~")
-elseif(WIN32 AND MINGW)
-    message("~~~~~~~~~MINGW Configuration~~~~~~~~")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g2")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb")
-elseif(UNIX AND NOT ANDROID)
-    message("~~~~~~~~~UNIX Configuration~~~~~~~~~")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g2")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+#Please Add The Directory Path Of The Magic Library.
+#set(MAGIC /home/magic/Magic)
+set(MAGIC /home/magic/WorkSpace/Magic)
+
+if(NOT DEFINED MAGIC)
+    message(FATAL_ERROR "Please Add The Directory Path Of The Magic Library!!!")
 endif()
 
-set(SRC
-	Source/Main.cpp
-	Source/Servlet/MainServlet.cpp
-	Source/Servlet/LoginServlet.cpp
-	Source/Servlet/StaticServlet.cpp
-)
-
-set(SRCS
-    Build.cpp
-)
-
-########################################################################################
-set(MAGIC ../Magic)
-include(${MAGIC}/Library.cmake)
-add_subdirectory(${MAGIC} Magic.out)
 include_directories(
-	${MAGIC}/Include						#Magic
-	${MAGIC}/ThirdParty/Gzip				#Gzip
-	${MAGIC}/ThirdParty/Asio/asio/include	#ASIO
-	${MAGIC}/ThirdParty/RapidJSON/include	#RapidJSON
+    ${MAGIC}
+	${MAGIC}/Include
+    ${PROJECT_SOURCE_DIR}
+    ${PROJECT_SOURCE_DIR}/Include
+    ${MAGIC}/ThirdParty/Asio/Include
+    ${MAGIC}/ThirdParty/RapidJSON/Include
 )
-########################################################################################
+link_directories(
+    ${MAGIC}/Lib
+)
+link_libraries(Magic pq pqxx)
+include(${MAGIC}/Magic.cmake)
 
-include_directories(Include)
+GENEX(${MAGIC} Blog MGC Magic WebServer SRC WebServlet DataBase)
 
-add_executable(WebServer ${SRC})
-target_link_libraries(WebServer Magic)
+set(CPPSRC
+    Source/Main.cpp
+    Source/Data/Article.cpp
+    Source/Servlet/EditorServlet.cpp
+    Source/Servlet/DetailsServlet.cpp
+    Source/Servlet/NotFoundServlet.cpp
+    Source/Servlet/ResourceServlet.cpp
+    Source/Servlet/ArticleListServlet.cpp
+)
+
+add_executable(Blog ${CPPSRC})

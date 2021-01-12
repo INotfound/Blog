@@ -1,0 +1,53 @@
+{
+    "Configurations":{
+        "NameSpace":"Blog",
+        "Registered":[
+            {
+                "Id":"resource",
+                "Class":"Blog::ResourceServlet",
+                "Interface":"Magic::NetWork::Http::IHttpServlet",
+                "IncludePath":"Servlet/ResourceServlet.h",
+                "Dependencies":["Magic::DataBase::ConnectionPool<pqxx::connection>"],
+                "FunctionPropertys":[]
+            },
+            {
+                "Id":"editor",
+                "Class":"Blog::EditorServlet",
+                "Interface":"Magic::NetWork::Http::IHttpServlet",
+                "IncludePath":"Servlet/EditorServlet.h",
+                "Dependencies":["Magic::DataBase::ConnectionPool<pqxx::connection>"],
+                "FunctionPropertys":[]
+            },
+            {
+                "Id":"details",
+                "Class":"Blog::DetailsServlet",
+                "Interface":"Magic::NetWork::Http::IHttpServlet",
+                "IncludePath":"Servlet/DetailsServlet.h",
+                "Dependencies":["Magic::DataBase::ConnectionPool<pqxx::connection>"],
+                "FunctionPropertys":[]
+            },
+            {
+                "Id":"notfound",
+                "Class":"Blog::NotFoundServlet",
+                "Interface":"Magic::NetWork::Http::IHttpServlet",
+                "IncludePath":"Servlet/NotFoundServlet.h",
+                "Dependencies":[],
+                "FunctionPropertys":[]
+            },
+            {
+                "Id":"articleList",
+                "Class":"Blog::ArticleListServlet",
+                "Interface":"Magic::NetWork::Http::IHttpServlet",
+                "IncludePath": "Servlet/ArticleListServlet.h",
+                "Dependencies":["Magic::DataBase::ConnectionPool<pqxx::connection>"],
+                "FunctionPropertys":[]
+            }
+        ],
+        "Initialize":[
+        ],
+        "Constructor":{
+            "Name":"Initialize",
+            "WithParameter": false
+        }
+    }
+}

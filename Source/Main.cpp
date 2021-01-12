@@ -1,13 +1,12 @@
 /*
- * @File: Main.cpp
  * @Author: INotFound
- * @Date: 2020-05-01 10:44:53
- * @LastEditTime : 2020-05-01 10:45:01
+ * @Date: 2020-12-31 10:24:44
+ * @LastEditTime: 2020-12-31 10:25:34
  */
-#include "Magic.h"
+#include <Magic>
+#include "Blog.h"
 
-int main(){
-    Magic::Init("WebServer");
-    getchar();
-    return 0;
+int main(int argc, char** argv){
+    Blog::Initialize();
+    return EXIT_SUCCESS;
 }

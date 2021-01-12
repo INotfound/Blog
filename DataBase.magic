@@ -1,0 +1,35 @@
+{
+    "Configurations":{
+        "NameSpace":"Blog",
+        "Registered":[
+            {
+                "Id":"dbPool",
+                "Class":"Magic::DataBase::ConnectionPool<pqxx::connection>",
+                "Interface":"",
+                "IncludePath":"pqxx/pqxx",
+                "Dependencies":["Magic::Config","Magic::TimingWheel"],
+                "FunctionPropertys":[]
+            },
+            {
+                "Id":"stdLog",
+                "Class":"Magic::StdOutLogAppender",
+                "Interface":"Magic::ILogAppender"
+            },
+            {
+                "Id":"article",
+                "Class":"Blog::Article",
+                "Interface":"",
+                "IncludePath": "Data/Article.h",
+                "Dependencies":[],
+                "FunctionPropertys":[]
+            }
+        ],
+        "Initialize":[
+
+        ],
+        "Constructor":{
+            "Name":"Initialize",
+            "WithParameter": false
+        }
+    }
+}
