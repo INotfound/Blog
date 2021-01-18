@@ -1,7 +1,7 @@
 /*
  * @Author: INotFound
  * @Date: 2021-01-05 09:52:29
- * @LastEditTime: 2021-01-11 06:37:57
+ * @LastEditTime: 2021-01-16 17:02:37
  */
 #include "Data/Article.h"
 #include "RapidJson/writer.h"
@@ -18,8 +18,8 @@ namespace Blog{
     bool ArticleListServlet::handle(const Safe<Http::HttpRequest>& request,const Safe<Http::HttpResponse>& response){
         std::string body;
         std::vector<Safe<Article>> articles;
-
-        if(ArticleDao::QueryNew(*m_ConnectionPool->getConnection(),articles)){
+        uint64_t page = Magic::StringAs<uint64_t>(request->getParam("Page"));
+        if(page > 0 && ArticleDao::QueryNew(*m_ConnectionPool->getConnection(),articles,page)){
             rapidjson::StringBuffer strBuf;
             rapidjson::Writer<rapidjson::StringBuffer> writer(strBuf);
             writer.StartObject();

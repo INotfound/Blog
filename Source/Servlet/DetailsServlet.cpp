@@ -1,7 +1,7 @@
 /*
  * @Author: INotFound
  * @Date: 2021-01-06 03:52:51
- * @LastEditTime: 2021-01-08 13:55:45
+ * @LastEditTime: 2021-01-12 08:11:01
  */
 #include <pqxx/pqxx>
 #include "Data/Article.h"
@@ -25,7 +25,7 @@ namespace Blog{
             if(ArticleDao::QueryOne(*m_ConnectionPool->getConnection(),aId,article)){
                 rapidjson::StringBuffer strBuf;
                 rapidjson::Writer<rapidjson::StringBuffer> writer(strBuf);
-                
+
                 writer.StartObject();
                 writer.Key("Id");
                 writer.Uint64(article->getId());
@@ -40,7 +40,7 @@ namespace Blog{
                 writer.Key("Code");
                 writer.Uint(1);
                 writer.EndObject();
-                
+
                 body.assign(strBuf.GetString());
             }
         }else{

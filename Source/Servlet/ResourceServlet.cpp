@@ -1,7 +1,7 @@
 /*
  * @Author: INotFound
  * @Date: 2021-01-06 10:01:13
- * @LastEditTime: 2021-01-11 03:46:15
+ * @LastEditTime: 2021-01-12 08:07:17
  */
 #include <sstream>
 #include <fstream>
@@ -19,7 +19,7 @@ namespace Blog{
     bool ResourceServlet::handle(const Safe<Http::HttpRequest>& request,const Safe<Http::HttpResponse>& response){
         response->setStatus(Http::HttpStatus::OK);
         std::ifstream stream;
-        std::string res    = "www";
+        std::string res = "www";
         std::string path = request->getPath();
         if(path == "/"){
             path = "/index.html";

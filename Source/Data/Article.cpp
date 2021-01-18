@@ -1,7 +1,7 @@
 /*
  * @Author: INotFound
  * @Date: 2020-12-31 10:18:18
- * @LastEditTime: 2021-01-11 10:40:41
+ * @LastEditTime: 2021-01-17 11:44:36
  */
 #include <exception>
 #include "Data/Article.h"
@@ -105,6 +105,7 @@ namespace Blog{
         }
         if(aId == 0){
             MAGIC_WARN() << "Query Bad Argument[AId == 0]!";
+            return false;
         }
         
         try{
@@ -138,12 +139,13 @@ namespace Blog{
             return false;
         }
         if(count <= 0){
-            MAGIC_FATAL() << "Query Bad Argument[Count <= 0]!";
+            MAGIC_WARN() << "Query Bad Argument[Count <= 0]!";
+            return false;
         }
         
         try{
             pqxx::work work(*conn);
-            pqxx::result result(work.exec_prepared("QueryNew",count,page));
+            pqxx::result result(work.exec_prepared("QueryNew",count,(page-1) * count));
             work.commit();
 
             if(result.size() == 0){
