@@ -4,7 +4,8 @@
  * @LastEditTime: 2021-01-06 02:53:37
  */
 #pragma once
-#include <Magic>
+#include <Magic/Utilty/Config.h>
+#include <Magic/NetWork/Http/HttpServlet.h>
 
 namespace Blog{
     using namespace Magic::NetWork;

@@ -4,8 +4,9 @@
  * @LastEditTime: 2021-01-12 03:52:51
  */
 #pragma once
-#include <Magic>
 #include <pqxx/pqxx>
+#include <Magic/DataBase/ConnectionPool.h>
+#include <Magic/NetWork/Http/HttpServlet.h>
 
 namespace Blog{
     using namespace Magic::NetWork;

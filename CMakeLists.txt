@@ -25,12 +25,40 @@ link_directories(
 )
 link_libraries(Magic pq pqxx)
 include(${MAGIC}/Magic.cmake)
+include_directories(${CMAKE_BINARY_DIR})
 
-GENEX(${MAGIC} Blog MODULE 
+set(LIBRARY_HEADERS
+    -I${MAGIC}/Include
+    -I${PROJECT_SOURCE_DIR}/Include
+    -I${MAGIC}/ThirdParty/Asio/Include
+    -I${MAGIC}/ThirdParty/RapidJSON/Include
+)
+
+## Servlet
+set(ServletHeaders
+    -H${PROJECT_SOURCE_DIR}/Include/Servlet/EditorServlet.h
+    -H${PROJECT_SOURCE_DIR}/Include/Servlet/DetailsServlet.h
+    -H${PROJECT_SOURCE_DIR}/Include/Servlet/ResourceServlet.h
+    -H${PROJECT_SOURCE_DIR}/Include/Servlet/NotFoundServlet.h
+    -H${PROJECT_SOURCE_DIR}/Include/Servlet/ArticleListServlet.h
+)
+
+set(MODULES
     ${MAGIC}/Modules/Magic.magic
     ${MAGIC}/Modules/WebServer.magic
-    ${PROJECT_SOURCE_DIR}/Modules/DataBase.magic
-    ${PROJECT_SOURCE_DIR}/Modules/WebServlet.magic
+    ${CMAKE_BINARY_DIR}/WebServlet.magic
+)
+
+add_custom_target(Gen ALL)
+
+add_custom_command(
+    TARGET Gen
+    COMMAND ${MAGIC}/Bin/Analysis ${LIBRARY_HEADERS} ${ServletHeaders} -D -P -Finit -NBlog -OWebServlet
+)
+
+add_custom_command(
+    TARGET Gen
+    COMMAND ${MAGIC}/Bin/Gen ${MODULES} Blog
 )
 
 set(CPPSRC

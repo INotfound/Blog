@@ -5,6 +5,7 @@
  */
 #include <exception>
 #include "Data/Article.h"
+#include "Magic/Utilty/Logger.h"
 
 namespace Blog{
     Article::Article(){

@@ -3,9 +3,9 @@
  * @Date: 2020-12-31 10:16:26
  * @LastEditTime: 2021-01-11 10:24:02
  */
-#include <Magic>
 #include <vector>
 #include <pqxx/pqxx>
+#include <Magic/Magic>
 
 namespace Blog{
     class Article{
